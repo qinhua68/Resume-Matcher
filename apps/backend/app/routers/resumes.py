@@ -1531,11 +1531,14 @@ async def download_resume_pdf(
     url = f"{settings.frontend_base_url}/print/resumes/{resume_id}?{params}"
 
     # Use the exact margins provided; compact mode only affects spacing.
+    # Margins are handled by CSS padding on the resume component.
+    # @page { margin: 0 } + CSS padding gives correct margins on every page.
+    # Playwright margins must be zero to avoid conflict with @page rules.
     pdf_margins = {
-        "top": marginTop,
-        "right": marginRight,
-        "bottom": marginBottom,
-        "left": marginLeft,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0,
     }
 
     # Render PDF with margins applied to every page

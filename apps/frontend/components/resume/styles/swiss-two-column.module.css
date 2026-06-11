@@ -34,7 +34,14 @@
   min-width: 0;
 }
 
-/* 
-  Specific overrides for two-column 
-  e.g. smaller section titles in sidebar 
+/*
+  Specific overrides for two-column
+  e.g. smaller section titles in sidebar
 */
+
+@media print {
+  .mainColumn,
+  .sidebarColumn {
+    overflow: visible !important;
+  }
+}

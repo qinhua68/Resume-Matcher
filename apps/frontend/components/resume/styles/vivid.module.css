@@ -152,4 +152,9 @@
     break-after: avoid !important;
     page-break-after: avoid !important;
   }
+
+  .mainColumn,
+  .sidebarColumn {
+    overflow: visible !important;
+  }
 }

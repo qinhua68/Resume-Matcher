@@ -130,15 +130,15 @@ export const SECTION_HEADER_SCALE_MAP: Record<SpacingLevel, number> = {
 
 // Header font family mapping
 export const HEADER_FONT_MAP: Record<HeaderFontFamily, string> = {
-  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-  'sans-serif': 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-  mono: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace',
+  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, "Noto Serif SC", "PingFang SC", "SimSun", serif',
+  'sans-serif': 'ui-sans-serif, system-ui, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+  mono: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Noto Sans SC", monospace',
 };
 
 export const BODY_FONT_MAP: Record<BodyFontFamily, string> = {
-  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-  'sans-serif': 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-  mono: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace',
+  serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, "Noto Serif SC", "PingFang SC", "SimSun", serif',
+  'sans-serif': 'ui-sans-serif, system-ui, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+  mono: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Noto Sans SC", monospace',
 };
 
 /**

@@ -85,6 +85,11 @@
     border-right-color: var(--resume-accent-primary);
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    overflow: visible !important;
+  }
+
+  .sidebarColumn {
+    overflow: visible !important;
   }
 
   .nameAccent::after {

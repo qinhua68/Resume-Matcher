@@ -142,6 +142,10 @@
 }
 
 @media print {
+  @page {
+    margin: 0;
+  }
+
   html,
   body {
     background: #ffffff !important;
@@ -167,7 +171,7 @@
   .cover-letter-print {
     width: 100% !important;
     max-width: 210mm !important;
-    min-height: 0 !important;
+    min-height: auto !important;
     position: static !important;
     margin: 0 auto !important;
     border: none !important;
@@ -189,6 +193,39 @@
     color: #000000 !important;
     text-decoration: none !important;
   }
+
+  /* Two-column grid: allow the grid and its columns to break across pages.
+     Without this, overflow:hidden on the columns clips content at page boundaries. */
+  .resume-body [class*="grid"],
+  .resume-body [class*="mainColumn"],
+  .resume-body [class*="sidebarColumn"] {
+    overflow: visible !important;
+    break-inside: auto;
+  }
+
+  /* Reinforce page break rules in print */
+  .resume-body .resume-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .resume-body .resume-section-title,
+  .resume-body .resume-section-title-sm {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .resume-body .resume-section-title + .resume-items > *:first-child,
+  .resume-body .resume-section-title-sm + .resume-items > *:first-child,
+  .resume-body .resume-section-title + p,
+  .resume-body .resume-section-title-sm + p,
+  .resume-body .resume-section-title + ul,
+  .resume-body .resume-section-title-sm + ul,
+  .resume-body .resume-section-title + .resume-item,
+  .resume-body .resume-section-title-sm + .resume-item {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
 }
 
 /* ============================================
@@ -205,19 +242,24 @@
   page-break-inside: avoid;
 }
 
+/* Description list items should also stay together */
+.resume-body .resume-list li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
 /* Section titles should not be orphaned at bottom of page */
 .resume-body .resume-section-title,
 .resume-body .resume-section-title-sm {
   break-after: avoid;
   page-break-after: avoid;
-  /* Ensure at least 3 lines of content follow the header before a page break */
   orphans: 3;
   widows: 3;
 }
 
 /* Keep section header together with its first item */
 .resume-body .resume-section {
-  break-inside: auto; /* Allow sections to span pages */
+  break-inside: auto;
 }
 
 /* Ensure the header + first content element stay together */
@@ -233,41 +275,18 @@
   page-break-before: avoid;
 }
 
+/* Prevent the last item in a section from being orphaned alone on a new page */
+.resume-body .resume-items > *:last-child {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
 /* Generic no-break class for any element */
 .resume-body [data-no-break] {
   break-inside: avoid;
   page-break-inside: avoid;
 }
 
-/* Print-specific overrides for resume templates */
-@media print {
-  .resume-body {
-    padding: var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left) !important;
-  }
-
-  .resume-body .resume-section-title,
-  .resume-body .resume-section-title-sm {
-    border-bottom-color: #9ca3af !important;
-    break-after: avoid !important;
-    page-break-after: avoid !important;
-  }
-
-  /* Reinforce page break rules in print - only for individual items */
-  .resume-body .resume-item {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  /* Keep section header with first content in print */
-  .resume-body .resume-section-title + .resume-items > *:first-child,
-  .resume-body .resume-section-title-sm + .resume-items > *:first-child,
-  .resume-body .resume-section-title + p,
-  .resume-body .resume-section-title-sm + p,
-  .resume-body .resume-section-title + ul,
-  .resume-body .resume-section-title-sm + ul,
-  .resume-body .resume-section-title + .resume-item,
-  .resume-body .resume-section-title-sm + .resume-item {
-    break-before: avoid !important;
-    page-break-before: avoid !important;
-  }
-}
+/* Note: Print-specific overrides for resume templates are in the CSS module
+   _base.module.css @media print block (with hashed class names). Do not add
+   duplicate rules here as they use unhashed class names and won't match. */
